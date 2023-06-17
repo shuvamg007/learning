@@ -3,6 +3,19 @@ import numpy as np
 from collections import Counter
 
 class RandomForest:
+    """Builds a Random Forest Classifier. Uses DecisionTree to build the forest
+
+    Parameters
+    ----------
+    min_samples: int, default=2
+        Stopping criteria 1; min samples needed for further split
+    max_depth: int, default=10
+        Stopping criteria 2; max depth of tree after which splitting stops
+    n_features: int
+        Max features allowed in a tree; adds randomness in random forests
+    n_trees: int, default=5
+        Number of trees to build at train time
+    """
     def __init__(self, max_depth=10, n_trees=5, min_samples_split=2, n_features=None):
         self.max_depth = max_depth
         self.n_trees = n_trees
