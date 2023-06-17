@@ -5,10 +5,12 @@ from helpers.metrics import get_accuracy
 from models.logistic_regression import LogisticRegression
 from models.decision_trees import DecisionTree 
 from models.random_forest import RandomForest
+from models.naive_bayes import NaiveBayes
 
 # model = LogisticRegression()
 # model = DecisionTree()
-model = RandomForest()
+# model = RandomForest()
+model = NaiveBayes()
 b_cancer = datasets.load_breast_cancer()
 
 X, y = b_cancer.data, b_cancer.target
