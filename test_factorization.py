@@ -4,6 +4,15 @@ from helpers.factorization import PCA
 from helpers.metrics import get_accuracy
 from models.knn import KNN
 
+def test_features(X, y):
+    model = KNN(k=5)
+    X_train, X_test, y_train, y_test = train_test_split(X, y, train_size=0.8, random_state=42)
+
+    model.fit(X_train, y_train)
+    y_pred = model.predict(X_test)
+
+    return get_accuracy(y_test, y_pred)
+
 iris = datasets.load_iris()
 
 X, y = iris.data, iris.target
@@ -17,19 +26,7 @@ print(f'Original shape: {X.shape}')
 print(f'Reduced features shape: {X_transformed.shape}')
 
 # testing orignal features
-model = KNN(k=5)
-X_train, X_test, y_train, y_test = train_test_split(X, y, train_size=0.8, random_state=42)
-
-model.fit(X_train, y_train)
-y_pred = model.predict(X_test)
-
-print(f'Accuracy on original features: {get_accuracy(y_test, y_pred)}')
+print(f'Accuracy on original features: {test_features(X, y)}')
 
 # testing transformed features
-model = KNN(k=5)
-X_train, X_test, y_train, y_test = train_test_split(X_transformed, y, train_size=0.8, random_state=42)
-
-model.fit(X_train, y_train)
-y_pred = model.predict(X_test)
-
-print(f'Accuracy on reduced features: {get_accuracy(y_test, y_pred)}')
+print(f'Accuracy on transformed features: {test_features(X_transformed, y)}')
